@@ -1,0 +1,53 @@
+@import "../../globals";
+
+.ion-page.layout-absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .ion-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ion-header,
+  .ion-footer {
+    position: absolute;
+  }
+}
+
+.ion-header,
+.ion-footer {
+  left: 0;
+  width: 100%;
+  z-index: $z-index-toolbar;
+}
+
+.ion-header {
+  top: 0;
+}
+
+.ion-footer {
+  position: fixed;
+  bottom: 0;
+}
+
+.ion-fixed-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ion-fixed-bg + .ion-content {
+  position: relative;
+}

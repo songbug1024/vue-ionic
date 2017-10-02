@@ -1,0 +1,81 @@
+$primary-color: #2594e9 !default;
+$success-color: #4caf50 !default;
+$danger-color: #ff4b00 !default;
+$warning-color: #fb8c00 !default;
+
+$background-color: #eee !default; // 背景色
+$text-color: #333 !default; // 文本颜色
+$paragraph-color: #888 !default; // 段落颜色
+$dark-color: #bfbfbf !default; // 备注颜色
+$light-color: #dfdfdf !default; // 浅色
+$white-color: #fff !default; // 白色
+$cancel-color: #bfbfbf !default; // 取消
+$placeholder-color: #bfbfbf !default; // 取消
+
+$colors: (
+  primary: $primary-color, // 主色
+  success: $success-color, // 成功
+  danger: $danger-color, // 错误
+  warning: $warning-color, // 警告
+  dark: $dark-color, // 备注颜色
+  paragraph: $paragraph-color // 备注颜色
+);
+
+$border-color: #efefef !default; // 边框颜色
+$border: 1px solid $border-color !default; // 边框
+$border-radius: 5px !default; // 边框圆角
+
+$font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif !default;
+$font-size: 1.4rem !default;
+
+$icon-font-family: "iconfont" !default;
+
+$content-padding: 10px !default;
+$content-padding-x: 17px !default;
+$content-padding-y: $content-padding !default;
+
+$content-margin: 10px !default;
+$content-margin-x: 17px !default;
+$content-margin-y: $content-margin !default;
+
+$header-height: 44px !default;
+$footer-height: 48px !default;
+$tabs-height: 50px !default;
+
+$toolbar-background: #fff !default;
+$toolbar-border-color: $light-color !default;
+$toolbar-padding: 0 $content-padding-x !default;
+$toolbar-text-color: $text-color !default;
+$toolbar-active-color: $primary-color !default;
+$toolbar-inactive-color: #8c8c8c !default;
+$toolbar-title-font-weight: normal !default;
+
+$item-padding-top: 12px !default;
+$item-padding-right: 17px !default;
+$item-padding-bottom: 12px !default;
+$item-padding-left: 17px !default;
+
+$item-detail-push-size: 10px 10px !default;
+$item-detail-push-color: #bfbfbf !default;
+
+$badge-font-size: 1.2rem !default;
+
+$segment-button-background-color: $white-color !default;
+$segment-button-text-color: $paragraph-color !default;
+$segment-button-height: 3.5rem !default;
+$segment-button-line-height: 3.2rem !default;
+$segment-button-font-size: 1.4rem !default;
+
+$text-input-input-clear-icon-color: #e2e2e2 !default;
+$text-input-input-clear-icon-width: 24px !default;
+
+$searchbar-container-background-color: #f0f0f0 !default;
+$searchbar-container-padding: 12px !default;
+$searchbar-input-search-icon-size: 14px !default;
+$searchbar-input-height: 32px !default;
+$searchbar-cancel-margin-left: 10px !default;
+
+$toast-background: rgba(38, 50, 56, 0.8) !default;
+$toast-title-font-size: 1.5rem !default;
+$toast-title-padding: 20px 30px !default;
+$toast-border-radius: 5px !default;

@@ -1,0 +1,23 @@
+@import "../../globals";
+
+// Search Bar
+// --------------------------------------------------
+
+.ion-searchbar {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+}
+
+.searchbar-icon {
+  // Don't let them tap on the icon
+  pointer-events: none;
+}
+
+.searchbar-input-container {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+}

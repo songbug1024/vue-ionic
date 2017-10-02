@@ -1,0 +1,14 @@
+@import "../../globals";
+@import "../item/item.variables";
+
+.ion-datetime.placeholder {
+  color: $placeholder-color;
+}
+
+.item-label-stacked .ion-datetime {
+  width: 100%;
+  font-size: 1.4rem;
+  border-radius: $border-radius;
+  padding: 12px $item-padding-left 12px $item-padding-right;
+  background-color: $list-background-color;
+}

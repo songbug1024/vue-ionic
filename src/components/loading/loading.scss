@@ -1,0 +1,25 @@
+@import "../../globals";
+
+// Loading Indicator
+// --------------------------------------------------
+
+.ion-loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-overlay;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-wrapper {
+  position: relative;
+  z-index: $z-index-overlay-wrapper;
+  display: flex;
+  align-items: center;
+}

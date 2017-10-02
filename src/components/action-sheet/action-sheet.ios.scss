@@ -1,0 +1,102 @@
+@import "../../globals";
+
+// iOS Action Sheet
+// --------------------------------------------------
+
+$action-sheet-text-align: center !default;
+$action-sheet-padding: 0 10px !default;
+$action-sheet-group-margin-bottom: 10px !default;
+$action-sheet-background: #f9f9f9 !default;
+
+$action-sheet-border-color: #d6d6da !default;
+$action-sheet-border-radius: 13px !default;
+
+$action-sheet-title-padding: 1.5rem !default;
+$action-sheet-title-color: #8f8f8f !default;
+$action-sheet-title-font-size: 1.3rem !default;
+$action-sheet-title-font-weight: 400 !default;
+$action-sheet-title-border-radius: 0 !default;
+
+$action-sheet-button-min-height: 5.6rem !default;
+$action-sheet-button-padding: 18px !default;
+$action-sheet-button-text-color: #007aff !default;
+$action-sheet-button-font-size: 2rem !default;
+$action-sheet-button-border-width: 1px !default;
+$action-sheet-button-border-style: solid !default;
+$action-sheet-button-border-color: #d1d3d6 !default;
+$action-sheet-button-background: transparent !default;
+$action-sheet-button-background-activated: #ebebeb !default;
+
+$action-sheet-button-destructive-text-color: #f53d3d !default;
+$action-sheet-button-cancel-background: #fff !default;
+$action-sheet-button-cancel-font-weight: 600 !default;
+
+.ion-action-sheet {
+  text-align: $action-sheet-text-align;
+}
+
+.action-sheet-container {
+  padding: $action-sheet-padding;
+}
+
+.action-sheet-group {
+  overflow: hidden;
+
+  margin-bottom: $action-sheet-group-margin-bottom - 2;
+
+  border-radius: $action-sheet-border-radius;
+  background: $action-sheet-background;
+
+  &:last-child {
+    margin-bottom: $action-sheet-group-margin-bottom;
+  }
+}
+
+.action-sheet-title {
+  padding: $action-sheet-title-padding;
+
+  border-bottom: $action-sheet-button-border-width $action-sheet-button-border-style $action-sheet-border-color;
+  border-radius: $action-sheet-title-border-radius;
+  font-size: $action-sheet-title-font-size;
+  font-weight: $action-sheet-title-font-weight;
+  text-align: $action-sheet-text-align;
+  color: $action-sheet-title-color;
+}
+
+.action-sheet-button {
+  margin: 0;
+  padding: $action-sheet-button-padding;
+
+  min-height: $action-sheet-button-min-height;
+
+  border-bottom: $action-sheet-button-border-width $action-sheet-button-border-style $action-sheet-border-color;
+  font-size: $action-sheet-button-font-size;
+  color: $action-sheet-button-text-color;
+  background: $action-sheet-button-background;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &.activated {
+    margin-top: -$action-sheet-button-border-width;
+
+    border-top: $action-sheet-button-border-width $action-sheet-button-border-style $action-sheet-button-background-activated;
+    border-bottom-color: $action-sheet-button-background-activated;
+    background: $action-sheet-button-background-activated;
+  }
+}
+
+.action-sheet-selected {
+  font-weight: bold;
+  background: #fff;
+}
+
+.action-sheet-destructive {
+  color: $action-sheet-button-destructive-text-color;
+}
+
+.action-sheet-cancel {
+  font-weight: $action-sheet-button-cancel-font-weight;
+  background: $action-sheet-button-cancel-background;
+}

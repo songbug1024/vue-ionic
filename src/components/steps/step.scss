@@ -1,0 +1,68 @@
+@import "../../globals";
+
+.ion-step {
+  position: relative;
+  vertical-align: top;
+  text-align: center;
+  flex: 1;
+}
+
+.ion-step-tail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 12px;
+  height: 2px;
+  background-color: #45a4ec;
+}
+
+.ion-step-inner {
+  position: relative;
+}
+
+.ion-step-body {
+  margin-top: 10px;
+}
+
+.ion-step-title {
+  color: rgba(#FFFFFF, .4);
+  font-size: 1.2rem;
+}
+
+.ion-step-head-inner, .ion-step-number, .ion-step-icon {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.ion-step-head-inner {
+  background-color: #45a4ec;
+  padding: 3px;
+}
+
+.ion-step-icon, .ion-step-number {
+  width: 20px;
+  height: 20px;
+}
+
+.ion-step-number {
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 20px;
+  background-color: #76bcf1;
+  color: map-get($colors, primary);
+}
+
+.ion-step-status-finish, .ion-step-status-process, .ion-step-status-error {
+  .ion-step-number {
+    background-color: #FFFFFF;
+  }
+  .ion-step-tail {
+    background-color: #b6dbf7;
+  }
+}
+
+.ion-step-status-process, .ion-step-status-error {
+  .ion-step-title {
+    color: #FFFFFF;
+  }
+}

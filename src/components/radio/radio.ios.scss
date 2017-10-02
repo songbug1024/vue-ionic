@@ -1,0 +1,112 @@
+@import "../../globals";
+@import "../item/item.variables";
+
+// iOS Radio
+// --------------------------------------------------
+
+$radio-color-on: #ffffff !default;
+
+$radio-icon-width: 21px !default;
+$radio-icon-height: 21px !default;
+$radio-icon-border-width: 2px !default;
+$radio-icon-border-style: solid !default;
+
+$radio-disabled-opacity: .8 !default;
+
+$radio-item-left-margin: 8px 21px 8px 3px !default;
+$radio-item-right-margin: $item-padding-media-top 11px $item-padding-media-bottom ($item-padding-left / 2) !default;
+
+.ion-radio {
+  position: relative;
+  display: inline-block;
+  .item-cover {
+    height: 100% !important;
+  }
+}
+
+// iOS Radio Circle: Unchecked
+// -----------------------------------------
+
+.radio-icon {
+  position: relative;
+  display: block;
+
+  width: $radio-icon-width;
+  height: $radio-icon-height;
+  border: 1px solid $border-color;
+  border-radius: 50%;
+}
+
+// iOS Radio Checkmark: Checked
+// -----------------------------------------
+.radio-checked {
+  border: none;
+  background-color: $primary-color;
+}
+
+.radio-checked .radio-inner {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+
+  width: 5px;
+  height: 12px;
+
+  border: $radio-icon-border-width $radio-icon-border-style $radio-color-on;
+  border-top-width: 0;
+  border-left-width: 0;
+  transform: rotate(45deg);
+}
+
+// iOS Radio: Disabled
+// -----------------------------------------
+
+.radio-disabled,
+.item-radio-disabled .ion-label {
+  opacity: $radio-disabled-opacity;
+
+  pointer-events: none;
+}
+
+// iOS Radio Within An Item
+// -----------------------------------------
+
+.item .ion-radio {
+  position: static;
+  display: block;
+
+  margin: $radio-item-right-margin;
+
+  &[item-left] {
+    margin: $radio-item-left-margin;
+  }
+}
+
+.item-radio .ion-label {
+  margin-left: 0;
+}
+
+// iOS Radio Color Mixin
+// --------------------------------------------------
+
+@mixin radio-theme($color-name, $color-base) {
+
+  .ion-radio[#{$color-name}] .radio-checked {
+    color: $color-base;
+
+    .radio-inner {
+      border-color: $color-base;
+    }
+
+  }
+
+}
+
+// Generate iOS Radio Colors
+// --------------------------------------------------
+
+@each $color-name, $color-base, $color-contrast in get-colors($colors) {
+
+  @include radio-theme($color-name, $color-base);
+
+}

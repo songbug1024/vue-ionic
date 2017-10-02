@@ -1,0 +1,19 @@
+.modal-wrapper-enter-active, .modal-wrapper-leave-active {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+  transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translate3d(0, 0, 0);
+}
+
+.modal-wrapper-enter {
+  transform: translate3d(0, 30%, 0);
+}
+
+.modal-wrapper-leave-active {
+  transform: translate3d(0, 100%, 0);
+}

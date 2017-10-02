@@ -1,0 +1,71 @@
+
+// Appearance
+// --------------------------------------------------
+
+@mixin appearance($val) {
+  -webkit-appearance: $val;
+  -moz-appearance: $val;
+}
+
+
+// Calc
+// --------------------------------------------------
+
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+
+// Input Placeholder
+// --------------------------------------------------
+
+@mixin placeholder($color: #999, $text-indent: 0) {
+  &::-moz-placeholder { // Firefox 19+
+    color: $color;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+
+  &::-moz-placeholder {
+    color: $color;
+  }
+
+  &::-webkit-input-placeholder {
+    // Safari placeholder margin issue
+    text-indent: $text-indent;
+    color: $color;
+  }
+}
+
+
+// SVG Background Image Mixin
+// --------------------------------------------------
+
+@mixin svg-background-image($svg) {
+  $url: url-encode($svg);
+  background-image: url("data:image/svg+xml;charset=utf-8,#{$url}");
+}
+
+
+// User Select None
+// --------------------------------------------------
+
+@mixin user-select-none() {
+  user-select: none;
+}
+
+@mixin multi-line-clamp($line) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin text-overflow-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

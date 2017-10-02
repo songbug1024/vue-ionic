@@ -1,0 +1,95 @@
+@import "../../globals";
+@import "./segment.mixin";
+
+// MD Segment
+// --------------------------------------------------
+
+$segment-button-background-color: transparent !default;
+
+$segment-button-text-color: $text-color !default;
+$segment-button-text-color-activated: $primary-color !default;
+
+$segment-button-border-width: 3px !default;
+$segment-button-border-style: solid !default;
+$segment-button-border-color: transparent !default;
+
+$segment-button-height: 3.2rem !default;
+$segment-button-line-height: 3rem !default;
+$segment-button-font-size: 1.3rem !default;
+
+$segment-button-icon-size: 2.6rem !default;
+$segment-button-icon-line-height: 2.8rem !default;
+
+$segment-button-toolbar-button-max-width: 100px !default;
+$segment-button-toolbar-button-height: 2.6rem !default;
+$segment-button-toolbar-line-height: 2.5rem !default;
+$segment-button-toolbar-font-size: 1.2rem !default;
+
+$segment-button-toolbar-icon-size: 2.2rem !default;
+$segment-button-toolbar-icon-line-height: 2.4rem !default;
+
+.segment-button {
+  flex: 1;
+
+  color: $segment-button-text-color;
+  background-color: $segment-button-background-color;
+
+  .ion-icon {
+    font-size: $segment-button-icon-size;
+    line-height: $segment-button-icon-line-height;
+  }
+
+  &.segment-activated {
+    color: $segment-button-text-color-activated;
+    .segment-button-content {
+      border-bottom-color: $segment-button-text-color-activated;
+    }
+  }
+}
+
+.segment-button-content {
+  height: $segment-button-height;
+
+  font-size: $segment-button-font-size;
+  line-height: $segment-button-line-height;
+
+  border-bottom: $segment-button-border-width $segment-button-border-style $segment-button-border-color;
+}
+
+.toolbar {
+  .ion-segment {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .segment-button {
+    max-width: $segment-button-toolbar-button-max-width;
+    height: $segment-button-toolbar-button-height;
+
+    font-size: $segment-button-toolbar-font-size;
+    line-height: $segment-button-toolbar-line-height;
+
+    .ion-icon {
+      font-size: $segment-button-toolbar-icon-size;
+      line-height: $segment-button-toolbar-icon-line-height;
+    }
+  }
+}
+
+// iOS Segment Color Generation
+// --------------------------------------------------
+
+@each $color-name, $color-base, $color-contrast in get-colors($colors) {
+
+  @include md-segment-button($color-name, $color-base, $color-contrast);
+
+  .toolbar[#{$color-name}] .segment-button.segment-activated {
+    color: $color-base;
+    .segment-button-content {
+      border-bottom-color: $color-base;
+    }
+  }
+}

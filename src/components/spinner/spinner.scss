@@ -1,0 +1,27 @@
+// Spinners
+// --------------------------------------------------
+
+.ion-spinner {
+  position: relative;
+  display: inline-block;
+
+  width: 28px;
+  height: 28px;
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transform: translateZ(0);
+  }
+
+  &.spinner-paused {
+    svg {
+      animation-play-state: paused;
+    }
+  }
+}

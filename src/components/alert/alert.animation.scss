@@ -1,0 +1,21 @@
+.ion-alert {
+  .backdrop-enter-active, .backdrop-leave-active {
+    transition-duration: 200ms;
+  }
+}
+
+.alert-wrapper-enter-active, .alert-wrapper-leave-active {
+  transition: all 200ms ease-in-out;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.alert-wrapper-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.alert-wrapper-leave-active {
+  opacity: 0;
+  transform: scale(0.9);
+}

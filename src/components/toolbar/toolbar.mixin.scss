@@ -1,0 +1,61 @@
+@mixin toolbar-theme($color-name, $color-base, $color-contrast) {
+  .toolbar[#{$color-name}] {
+
+    .toolbar-background {
+      border-color: darken($color-base, 10%);
+      background: $color-base;
+    }
+
+    .toolbar-title,
+    .bar-button-default {
+      color: $color-contrast;
+    }
+  }
+}
+
+@mixin bar-button-default($color-name, $color-base, $color-contrast) {
+
+  .bar-button-#{$color-name} {
+    color: $color-base;
+    background-color: transparent;
+
+    &:hover:not(.disable-hover) {
+      color: $color-base;
+    }
+
+    &.activated {
+      opacity: .4;
+    }
+  }
+
+}
+
+@mixin bar-button-outline($color-name, $color-base, $color-contrast) {
+
+  .bar-button-outline-#{$color-name} {
+    $fg-color: color-shade($color-base);
+    border-color: $fg-color;
+    color: $fg-color;
+    background-color: transparent;
+
+    &.activated {
+      color: $color-contrast;
+      background-color: $fg-color;
+    }
+  }
+
+}
+
+@mixin bar-button-solid($color-name, $color-base, $color-contrast) {
+
+  .bar-button-solid-#{$color-name} {
+    color: $color-contrast;
+    background-color: $color-base;
+
+    &.activated {
+      color: $color-contrast;
+      background-color: color-shade($color-base);
+    }
+  }
+
+}

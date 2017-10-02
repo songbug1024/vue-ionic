@@ -1,0 +1,41 @@
+@import "../../globals";
+
+// iOS Item
+// --------------------------------------------------
+
+$list-border-color: $border-color !default;
+$list-background-color: #ffffff !default;
+$list-activated-background-color: #d9d9d9 !default;
+$list-text-color: $text-color !default;
+
+$item-body-text-font-size: $font-size !default;
+$item-paragraph-text-color: $paragraph-color !default;
+
+$item-padding-top: 13px !default;
+$item-padding-right: $content-padding !default;
+$item-padding-bottom: 13px !default;
+$item-padding-left: $content-padding !default;
+
+$item-detail-push-size: 12px 12px !default;
+$item-detail-push-color: $list-border-color !default;
+$item-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' fill='#{$item-detail-push-color}'/></svg>" !default;
+
+$item-padding-media-top: 10px !default;
+$item-padding-media-bottom: 10px !default;
+
+$item-padding-icon-top: 10px !default;
+$item-padding-icon-bottom: 9px !default;
+
+$item-avatar-size: 3.6rem !default;
+$item-thumbnail-size: 5.6rem !default;
+
+$item-note-color: darken($list-border-color, 10%) !default;
+
+$item-divider-background: #f7f7f7 !default;
+$item-divider-color: #222 !default;
+$item-divider-padding: 5px 15px !default;
+
+$item-sliding-content-background: $list-background-color !default;
+
+$item-select-bg-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 12'><path d='M2,0 l-2,2 l10,10 L20,2 l-2,-2 l-8,10 L2,0z' fill='#{$item-detail-push-color}'/></svg>" !default;
+$item-select-bg-size: $item-detail-push-size !default;

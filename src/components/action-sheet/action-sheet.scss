@@ -1,0 +1,54 @@
+@import "../../globals";
+
+// Action Sheet
+// --------------------------------------------------
+
+$action-sheet-width: 100% !default;
+$action-sheet-max-width: 500px !default;
+
+.ion-action-sheet {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z-index-overlay;
+  display: block;
+
+  width: $action-sheet-width;
+  height: $action-sheet-width;
+}
+
+.action-sheet-wrapper {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-overlay-wrapper;
+  display: block;
+
+  margin: auto;
+
+  width: $action-sheet-width;
+  max-width: $action-sheet-max-width;
+}
+
+.action-sheet-button {
+  width: $action-sheet-width;
+}
+
+.grid-layout {
+  display: flex;
+  flex-wrap: wrap;
+  .action-sheet-button {
+    width: 25%;
+    padding: 0;
+    border-bottom: none;
+    font-size: 14px;
+  }
+  .action-sheet-icon + .action-sheet-text {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+  .action-sheet-text {
+    display: block;
+  }
+}

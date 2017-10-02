@@ -1,0 +1,27 @@
+// Spinner: dots
+// --------------------------------------------------
+@keyframes spinner-dots {
+  0% {
+    opacity: .9;
+    transform: scale(1, 1);
+  }
+  50% {
+    opacity: .3;
+    transform: scale(.4, .4);
+  }
+  100% {
+    opacity: .9;
+    transform: scale(1, 1);
+  }
+}
+
+.spinner-dots circle {
+  fill: #444;
+  stroke-width: 0;
+}
+
+.spinner-dots svg {
+  transform-origin: center;
+
+  animation: spinner-dots 1s linear infinite;
+}

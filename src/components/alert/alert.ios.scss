@@ -1,0 +1,161 @@
+@import "../../globals";
+
+// iOS Alerts
+// --------------------------------------------------
+
+$alert-max-width: 270px !default;
+$alert-border-radius: $border-radius !default;
+$alert-background: #ffffff !default;
+$alert-box-shadow: none !default;
+
+$alert-head-padding: 15px 15px 15px !default;
+$alert-head-text-align: center !default;
+
+$alert-title-margin-top: 8px !default;
+$alert-title-font-size: 17px !default;
+$alert-title-font-weight: 600 !default;
+
+$alert-sub-title-font-size: 14px !default;
+$alert-sub-title-text-color: #666 !default;
+
+$alert-message-padding: 0 15px 20px !default;
+$alert-message-font-size: 14px !default;
+$alert-message-text-align: center !default;
+$alert-message-text-color: inherit !default;
+$alert-message-line-height: 20px !default;
+$alert-message-padding-empty: 0 0 12px 0 !default;
+
+$alert-content-max-height: 240px !default;
+
+$alert-input-margin-top: 10px !default;
+$alert-input-padding: 6px !default;
+$alert-input-border-color: #ccc !default;
+$alert-input-border: 1px solid $alert-input-border-color !default;
+$alert-input-border-radius: 4px !default;
+$alert-input-background-color: #fff !default;
+
+$alert-button-group-flex-wrap: wrap !default;
+
+$alert-button-flex: 1 1 auto !default;
+$alert-button-margin: 0 !default;
+$alert-button-min-width: 50% !default;
+$alert-button-min-height: 40px !default;
+$alert-button-font-size: 16px !default;
+$alert-button-text-color: $primary-color !default;
+$alert-button-background-color: transparent !default;
+$alert-button-background-color-activated: #e9e9e9 !default;
+
+$alert-button-border-width: 1px !default;
+$alert-button-border-style: solid !default;
+$alert-button-border-color: #dbdbdf !default;
+$alert-button-border-radius: 0 !default;
+
+$alert-button-main-font-weight: bold !default;
+
+.alert-wrapper {
+  overflow: hidden;
+
+  max-width: $alert-max-width;
+
+  border-radius: $alert-border-radius;
+  background-color: $alert-background;
+
+  box-shadow: $alert-box-shadow;
+}
+
+// iOS Alert Header
+// --------------------------------------------------
+
+.alert-head {
+  padding: $alert-head-padding;
+
+  text-align: $alert-head-text-align;
+}
+
+.alert-title {
+  margin-top: $alert-title-margin-top;
+
+  font-size: $alert-title-font-size;
+  font-weight: $alert-title-font-weight;
+}
+
+.alert-sub-title {
+  font-size: $alert-sub-title-font-size;
+  color: $alert-sub-title-text-color;
+}
+
+// iOS Alert Message
+// --------------------------------------------------
+
+.alert-message,
+.alert-input-group {
+  padding: $alert-message-padding;
+
+  font-size: $alert-message-font-size;
+  text-align: $alert-message-text-align;
+  color: $alert-message-text-color;
+}
+
+.alert-message {
+  max-height: $alert-content-max-height;
+  line-height: $alert-message-line-height;
+  text-align: left;
+
+  &:empty {
+    padding: $alert-message-padding-empty;
+  }
+}
+
+// iOS Alert Input
+// --------------------------------------------------
+
+.alert-input {
+  margin-top: $alert-input-margin-top;
+  padding: $alert-input-padding;
+
+  border: $alert-input-border;
+  border-radius: $alert-input-border-radius;
+  background-color: $alert-input-background-color;
+
+  -webkit-appearance: none;
+}
+
+// iOS Alert Button
+// --------------------------------------------------
+
+.alert-button-group {
+  flex-wrap: $alert-button-group-flex-wrap;
+
+  margin-right: -$alert-button-border-width;
+}
+
+.alert-button {
+  overflow: hidden;
+
+  flex: $alert-button-flex;
+
+  margin: $alert-button-margin;
+
+  min-width: $alert-button-min-width;
+  height: $alert-button-min-height;
+
+  border-top: $alert-button-border-width $alert-button-border-style $alert-button-border-color;
+  border-right: $alert-button-border-width $alert-button-border-style $alert-button-border-color;
+  border-radius: $alert-button-border-radius;
+  font-size: $alert-button-font-size;
+  color: $alert-button-text-color;
+  background-color: $alert-button-background-color;
+
+  &:last-child {
+    border-right: 0;
+    font-weight: $alert-button-main-font-weight;
+  }
+
+  &.activated {
+    background-color: $alert-button-background-color-activated;
+  }
+
+  &.alert-cancel {
+    color: $cancel-color;
+  }
+}

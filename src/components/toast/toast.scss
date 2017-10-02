@@ -1,0 +1,34 @@
+@import "../../globals";
+
+// Toast
+// --------------------------------------------------
+.ion-toast {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z-index-overlay;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+.toast-wrapper {
+  display: flex;
+  align-items: center;
+
+  pointer-events: auto;
+  z-index: $z-index-overlay-wrapper;
+}
+
+.toast-message {
+  flex: 1;
+}
+
+.toast-button {
+  padding: 19px 16px 17px;
+  font-size: 1.5rem;
+}

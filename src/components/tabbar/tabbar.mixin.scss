@@ -1,0 +1,13 @@
+@mixin tabbar($color-base, $color-contrast) {
+  border-color: darken($color-base, 10%);
+  background-color: $color-base;
+
+  .tab-button {
+    color: $color-contrast;
+  }
+
+  .tab-button:hover:not(.disable-hover),
+  .tab-button.tab-selected {
+    color: $color-contrast;
+  }
+}

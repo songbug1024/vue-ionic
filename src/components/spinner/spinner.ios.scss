@@ -1,0 +1,12 @@
+// Spinner: ios / ios-small
+// --------------------------------------------------
+
+.spinner-ios line {
+  stroke: #69717d;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+
+.spinner-ios svg {
+  animation: spinner-fade-out 1s linear infinite;
+}

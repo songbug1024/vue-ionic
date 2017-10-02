@@ -1,0 +1,14 @@
+.ion-action-sheet {
+  .backdrop-enter-active, .backdrop-leave-active {
+    transition-duration: 200ms;
+  }
+}
+
+.action-sheet-wrapper-enter-active, .action-sheet-wrapper-leave-active {
+  transition: transform 200ms ease-in-out;
+  transform: translate3d(0, 0, 0);
+}
+
+.action-sheet-wrapper-enter, .action-sheet-wrapper-leave-active {
+  transform: translate3d(0, 100%, 0);
+}

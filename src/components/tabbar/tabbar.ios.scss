@@ -1,0 +1,107 @@
+@import "../../globals";
+@import "./tabbar.mixin";
+
+$tabbar-background: #fafafa !default;
+$tabbar-item-padding: 0 2px !default;
+$tabbar-item-font-size: 10px !default;
+$tabbar-item-icon-size: 20px !default;
+$tabbar-height: 49px !default;
+
+$tab-button-max-width: 240px !default;
+$tab-button-active-color: $toolbar-active-color !default;
+$tab-button-inactive-color: $toolbar-inactive-color !default;
+
+.ion-tabbar {
+  justify-content: center;
+
+  border-top: 1px solid $toolbar-border-color;
+  background: $tabbar-background;
+}
+
+[tabs-placement=top] .ion-tabbar {
+  border-top: 0;
+  border-bottom: 1px solid $toolbar-border-color;
+}
+
+.tab-button {
+  padding: $tabbar-item-padding;
+
+  max-width: $tab-button-max-width;
+  min-height: $tabbar-height;
+
+  color: $tab-button-inactive-color;
+
+  &.has-icon {
+    .tab-button-text {
+      margin-top: 5px;
+    }
+  }
+}
+
+.tab-button:hover:not(.disable-hover),
+.tab-button.tab-selected {
+  color: $tab-button-active-color;
+}
+
+.tab-button-text {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  min-height: $tabbar-item-font-size + 1;
+
+  font-size: $tabbar-item-font-size;
+}
+
+.has-title-only .tab-button-text {
+  font-size: $tabbar-item-font-size + 2;
+}
+
+.tab-button-icon {
+  min-width: $tabbar-item-icon-size + 5;
+  height: $tabbar-item-icon-size;
+
+  font-size: $tabbar-item-icon-size;
+
+  &::before {
+    vertical-align: top;
+  }
+}
+
+[tabsLayout=icon-right] .tab-button,
+[tabsLayout=icon-left] .tab-button {
+
+  .tab-button-text {
+    font-size: 1.4rem;
+    line-height: 1.1;
+  }
+
+  .ion-icon {
+    min-width: 24px;
+    height: 26px;
+
+    font-size: 24px;
+  }
+}
+
+[tabsLayout=icon-hide] .tab-button,
+.tab-button.has-title-only {
+  min-height: $tabbar-height - 8;
+
+  .tab-button-text {
+    margin: 2px 0;
+
+    font-size: 1.4rem;
+    line-height: 1.1;
+  }
+}
+
+[tabsLayout=title-hide] .tab-button,
+.tab-button.icon-only {
+  min-height: $tabbar-height - 8;
+}
+
+@each $color-name, $color-base, $color-contrast in get-colors($colors) {
+  .ion-tabbar[#{$color-name}] {
+    @include tabbar($color-base, $color-contrast);
+  }
+}

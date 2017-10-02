@@ -1,0 +1,59 @@
+@import "../../globals";
+
+// iOS Toast
+// --------------------------------------------------
+
+$toast-text-align: left !default;
+$toast-background: rgba(0, 0, 0, .9) !default;
+$toast-border-radius: .65rem !default;
+
+$toast-title-color: #fff !default;
+$toast-title-font-size: 1.4rem !default;
+$toast-title-padding: 1.5rem !default;
+
+.toast-wrapper {
+  background: $toast-background;
+}
+
+.toast-top,
+.toast-bottom {
+  .toast-wrapper {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: $z-index-overlay-wrapper;
+  }
+}
+
+.toast-top {
+  .toast-wrapper {
+    top: 0;
+  }
+}
+
+.toast-bottom {
+  .toast-wrapper {
+    bottom: 0;
+  }
+}
+
+.toast-middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .toast-wrapper {
+    flex-direction: column;
+    border-radius: $toast-border-radius;
+  }
+}
+
+.toast-icon {
+  font-size: 3em;
+}
+
+.toast-message {
+  padding: $toast-title-padding;
+  font-size: $toast-title-font-size;
+  color: $toast-title-color;
+  line-height: 1.4em;
+}

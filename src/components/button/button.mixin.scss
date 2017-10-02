@@ -1,0 +1,45 @@
+@mixin button-default($color-base, $color-contrast) {
+  $background-color: $color-base;
+  $background-color-activated: color-shade($background-color);
+
+  color: $color-contrast;
+  background-color: $background-color;
+
+  &.activated {
+    background-color: $background-color-activated;
+  }
+}
+
+@mixin button-default-color($color-value) {
+  @include button-default($color-value, color-inverse($color-value));
+}
+
+@mixin button-outline($color-base, $color-contrast) {
+  border-color: $color-base;
+  color: $color-base;
+  background-color: transparent;
+
+  &.activated {
+    color: $color-contrast;
+    background-color: $color-base;
+  }
+}
+
+@mixin button-outline-color($color-value) {
+  @include button-outline($color-value, color-inverse($color-value));
+}
+
+@mixin button-clear($color-base, $color-contrast) {
+  border-color: transparent;
+  color: $color-base;
+  background-color: transparent;
+
+  &.activated {
+    background-color: transparent;
+    opacity: .4;
+  }
+}
+
+@mixin button-clear-color($color-value) {
+  @include button-clear($color-value, color-inverse($color-value));
+}

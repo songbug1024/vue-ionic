@@ -1,0 +1,88 @@
+@import "../../globals";
+@import "../item/item.variables";
+
+// iOS Input
+// --------------------------------------------------
+
+$text-input-background-color: $list-background-color !default;
+
+$text-input-margin-top: $item-padding-top !default;
+$text-input-margin-right: $item-padding-right !default;
+$text-input-margin-bottom: $item-padding-bottom !default;
+$text-input-margin-left: 0 !default;
+
+$text-input-textarea-height: 160px !default;
+$text-input-textarea-line-height: 2rem !default;
+
+$text-input-input-clear-icon-width: 30px !default;
+$text-input-input-clear-icon-color: rgba(0, 0, 0, .5) !default;
+$text-input-input-clear-icon-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='" + $text-input-input-clear-icon-color + "' d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>" !default;
+$text-input-input-clear-icon-size: 18px !default;
+
+// iOS Default Input
+// --------------------------------------------------
+
+.text-input {
+  margin: $text-input-margin-top $text-input-margin-right $text-input-margin-bottom $text-input-margin-left;
+  padding: 0;
+  font-size: 1.4rem;
+  width: calc(100% - #{$text-input-margin-right} - #{$text-input-margin-left});
+}
+
+// iOS Inset Input
+// --------------------------------------------------
+
+.inset-input {
+  margin: ($item-padding-top / 2) $item-padding-right ($item-padding-bottom / 2) 0;
+  padding: ($item-padding-top / 2) ($item-padding-right / 2) ($item-padding-bottom / 2) ($item-padding-left / 2);
+}
+
+// iOS Stacked & Floating Inputs
+// --------------------------------------------------
+.item-label-stacked .ion-textarea,
+.item-label-stacked .ion-input {
+  background-color: $list-background-color;
+  border-radius: $border-radius;
+}
+
+.item-label-stacked .ion-textarea .text-input {
+  height: $text-input-textarea-height - $item-padding-top - $item-padding-bottom;
+  line-height: $text-input-textarea-line-height;
+}
+
+.item-label-stacked .text-input,
+.item-label-floating .text-input {
+  margin-top: $item-padding-top;
+  margin-bottom: $item-padding-bottom;
+  margin-left: $item-padding-left;
+
+  width: calc(100% - #{$item-padding-left} - #{$item-padding-right});
+}
+
+.item-label-stacked .ion-select,
+.item-label-floating .ion-select {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 0;
+}
+
+// iOS Clear Input Icon
+// --------------------------------------------------
+
+.ion-input[clear-input] {
+  position: relative;
+
+  .text-input {
+    padding-right: $text-input-input-clear-icon-width;
+  }
+}
+
+.button.text-input-clear-icon {
+  @include svg-background-image($text-input-input-clear-icon-svg);
+
+  right: ($item-padding-right / 2);
+
+  width: $text-input-input-clear-icon-width;
+
+  background-size: $text-input-input-clear-icon-size;
+}

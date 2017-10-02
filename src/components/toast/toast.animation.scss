@@ -1,0 +1,36 @@
+.ion-toast {
+  .backdrop-enter-active, .backdrop-leave-active {
+    transition-duration: 200ms;
+  }
+}
+
+.toast-wrapper-enter-active, .toast-wrapper-leave-active {
+  transition: all 200ms ease-in-out;
+}
+
+.toast-top {
+  .toast-wrapper-enter-active, .toast-wrapper-leave-active {
+    transform: translateY(0);
+  }
+  .toast-wrapper-enter, .toast-wrapper-leave-active {
+    transform: translateY(-100%);
+  }
+}
+
+.toast-middle {
+  .toast-wrapper-enter-active, .toast-wrapper-leave-active {
+    opacity: 1;
+  }
+  .toast-wrapper-enter, .toast-wrapper-leave-active {
+    opacity: 0;
+  }
+}
+
+.toast-bottom {
+  .toast-wrapper-enter-active, .toast-wrapper-leave-active {
+    transform: translateY(0);
+  }
+  .toast-wrapper-enter, .toast-wrapper-leave-active {
+    transform: translateY(100%);
+  }
+}

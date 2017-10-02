@@ -1,0 +1,21 @@
+@import "../../globals";
+
+// Accordion
+// --------------------------------------------------
+
+.accordion-item-bar {
+  display: block;
+}
+
+.accordion-item-content {
+  overflow: hidden;
+  height: 0;
+  transform: translate3d(0, 0, 0);
+  transition: height 300ms;
+}
+
+.accordion-item-expanded {
+  .accordion-item-content {
+    height: auto;
+  }
+}

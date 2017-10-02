@@ -1,0 +1,70 @@
+@import "../../globals";
+
+// iOS Searchbar
+// --------------------------------------------------
+
+$searchbar-input-search-icon-color: #bfbfbf !default;
+$searchbar-input-search-icon-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13'><path fill='fg-color' d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1 M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0 L5,0z'/><line stroke='fg-color' stroke-miterlimit='10' x1='12.6' y1='12.6' x2='8.2' y2='8.2'/></svg>" !default;
+$searchbar-input-search-icon-size: 13px !default;
+
+$searchbar-container-background-color: #f1f3f5 !default;
+$searchbar-container-padding: 10px !default;
+$searchbar-container-border-radius: $border-radius !default;
+
+$searchbar-input-height: 30px !default;
+$searchbar-input-font-size: 14px !default;
+$searchbar-input-line-height: 18px !default;
+$searchbar-input-margin-left: 5px !default;
+
+// Searchbar Mixin for Icons
+// -----------------------------------------
+
+@mixin searchbar-icon($svg-icon, $fg-color) {
+  $svg: str-replace($svg-icon, 'fg-color', $fg-color);
+  @include svg-background-image($svg);
+}
+
+// Searchbar Search Icon
+// -----------------------------------------
+
+.searchbar-search-icon {
+  @include searchbar-icon($searchbar-input-search-icon-svg, $searchbar-input-search-icon-color);
+
+  width: $searchbar-input-search-icon-size + 1;
+  height: $searchbar-input-search-icon-size + 1;
+
+  background-repeat: no-repeat;
+  background-size: $searchbar-input-search-icon-size;
+}
+
+// Searchbar Container
+// -----------------------------------------
+
+.searchbar-input-container {
+  padding: 0 $searchbar-container-padding;
+  background: $searchbar-container-background-color;
+  border-radius: $searchbar-container-border-radius;
+}
+
+// Searchbar Input Field
+// -----------------------------------------
+
+.searchbar-input {
+  height: $searchbar-input-height;
+  font-size: $searchbar-input-font-size;
+  line-height: $searchbar-input-line-height;
+  margin-left: $searchbar-input-margin-left;
+  .text-input {
+    margin: ($searchbar-input-height - $searchbar-input-line-height) / 2 0;
+    width: 100%;
+  }
+  .button.text-input-clear-icon {
+    right: 0;
+  }
+}
+
+.button.searchbar-cancel {
+  padding: 0;
+  height: $searchbar-input-height;
+  margin-left: $content-padding-x;
+}

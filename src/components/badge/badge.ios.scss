@@ -1,0 +1,26 @@
+@import "../../globals";
+
+// iOS Badge
+// --------------------------------------------------
+
+$badge-border-radius: 10px !default;
+$badge-background-color: $primary-color !default;
+$badge-text-color: color-contrast($colors, $badge-background-color) !default;
+
+.ion-badge {
+  border-radius: $badge-border-radius;
+  color: $badge-text-color;
+  background-color: $badge-background-color;
+}
+
+// Generate iOS Badge Colors
+// --------------------------------------------------
+
+@each $color-name, $color-base, $color-contrast in get-colors($colors) {
+
+  .badge-#{$color-name} {
+    color: $color-contrast;
+    background-color: $color-base;
+  }
+
+}

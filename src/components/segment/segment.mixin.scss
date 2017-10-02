@@ -1,0 +1,18 @@
+// Segment Button Mixin
+// --------------------------------------------------
+
+@mixin md-segment-button($color-name, $color-base, $color-contrast) {
+  .ion-segment[#{$color-name}] {
+    .segment-button {
+      color: $color-base;
+
+      &.segment-activated {
+        color: $color-base;
+
+        .segment-button-content {
+          border-bottom-color: $color-base;
+        }
+      }
+    }
+  }
+}

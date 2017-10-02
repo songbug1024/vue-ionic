@@ -1,0 +1,11 @@
+.ion-view {
+  .backdrop-enter-active, .backdrop-leave-active {
+    transition-property: opacity;
+    transition-timing-function: ease-in-out;
+    opacity: .3;
+  }
+
+  .backdrop-enter, .backdrop-leave-active {
+    opacity: .01;
+  }
+}
