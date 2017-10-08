@@ -6,7 +6,7 @@
 $button-fab-size: 56px !default;
 
 .button-fab {
-  position: absolute;
+  position: fixed;
   overflow: hidden;
 
   width: $button-fab-size;
@@ -25,13 +25,18 @@ $button-fab-size: 56px !default;
 
     font-size: 2.8rem;
   }
-
 }
 
 [fab-center] {
   left: 50%;
 
   margin-left: -$button-fab-size / 2;
+}
+
+[fab-middle] {
+  top: 50%;
+
+  margin-top: -$button-fab-size / 2;
 }
 
 [fab-top] {
@@ -48,8 +53,4 @@ $button-fab-size: 56px !default;
 
 [fab-left] {
   left: $content-margin-x;
-}
-
-[fab-fixed] {
-  position: fixed;
 }

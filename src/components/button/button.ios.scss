@@ -4,11 +4,11 @@
 $button-padding: 1em !default;
 $button-font-size: 1.4rem !default;
 $button-height: 28px !default;
+$button-border-radius: 4px !default;
+
 $button-color: $primary-color !default;
-$button-color-activated: color-shade($button-color) !default;
 $button-text-color: color-contrast($colors, $button-color) !default;
 $button-hover-opacity: .8 !default;
-$button-border-radius: 4px !default;
 
 $button-large-font-size: 1.5rem !default;
 $button-large-height: 40px !default;
@@ -17,7 +17,7 @@ $button-large-padding: 1em !default;
 $button-small-font-size: 1.2rem !default;
 $button-small-height: 24px !default;
 $button-small-padding: .9em !default;
-$button-small-icon-font-size: 1.3em !default;
+$button-small-icon-only-font-size: 1.3em !default;
 $button-small-border-radius: 3px !default;
 
 $button-round-padding: 0 2.6rem !default;
@@ -27,39 +27,39 @@ $button-round-border-radius: 64px !default;
 // --------------------------------------------------
 
 .button {
-  padding: 0 $button-padding;
+  @include button-size((
+    padding: $button-padding,
+    height: $button-height,
+    font-size: $button-font-size,
+    border-radius: $button-border-radius,
+  ));
 
-  height: $button-height;
+  @include button-color($button-color, $button-text-color);
 
-  border-radius: $button-border-radius;
-  font-size: $button-font-size;
-
-  @include button-default($button-color, $button-text-color);
+  &:hover {
+    opacity: $button-hover-opacity;
+  }
 }
 
 // iOS Button Sizes
 // --------------------------------------------------
 
 .button-large {
-  padding: 0 $button-large-padding;
-
-  height: $button-large-height;
-
-  font-size: $button-large-font-size;
+  @include button-size((
+    padding: $button-large-padding,
+    height: $button-large-height,
+    font-size: $button-large-font-size,
+  ));
 }
 
 .button-small {
-  padding: 0 $button-small-padding;
-
-  height: $button-small-height;
-
-  font-size: $button-small-font-size;
-
-  border-radius: $button-small-border-radius;
-
-  &.button-icon-only .ion-icon {
-    font-size: $button-small-icon-font-size;
-  }
+  @include button-size((
+    padding: $button-small-padding,
+    height: $button-small-height,
+    font-size: $button-small-font-size,
+    border-radius: $button-small-border-radius,
+    icon-only-font-size: $button-small-icon-only-font-size,
+  ));
 }
 
 // iOS Block Button
@@ -113,11 +113,13 @@ $button-round-border-radius: 64px !default;
 
 @each $color-name, $color-base, $color-contrast in get-colors($colors) {
   .button-#{$color-name} {
-    @include button-default($color-base, $color-contrast);
+    @include button-color($color-base, $color-contrast);
   }
+
   .button-outline-#{$color-name} {
     @include button-outline($color-base, $color-contrast);
   }
+
   .button-clear-#{$color-name} {
     @include button-clear($color-base, $color-contrast);
   }

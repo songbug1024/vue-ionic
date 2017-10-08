@@ -32,7 +32,7 @@
           const headers = this.$el.querySelectorAll('.ion-header')
           const footers = this.$el.querySelectorAll('.ion-footer')
           const tabbar = document.querySelector('.ion-tabbar')
-          const scrollTopBtn = content.querySelector('.scroll-top-btn') // 滚动到顶部按钮
+          const sttBtn = content.querySelector('.stt-btn') // 滚动到顶部按钮
 
           // tabbar显示，并且当前页面不是在Modal中
           if (tabbar && hasClass(tabbar, 'show-tabs') && !hasClass(this.$el.parentNode, 'modal-wrapper')) {
@@ -70,8 +70,8 @@
             content.style['min-height'] = `${getWinHeight()}px`
           }
 
-          if (scrollTopBtn) {
-            scrollTopBtn.style['bottom'] = `${bottom + 10}px` // FIXME display: none时不能获取bottom scrollTopBtn.style['bottom'].split('px')[0]
+          if (sttBtn) {
+            sttBtn.style['bottom'] = `${bottom + 10}px` // FIXME display: none时不能获取bottom scrollTopBtn.style['bottom'].split('px')[0]
           }
         }
       }

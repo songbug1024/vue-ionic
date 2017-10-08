@@ -58,7 +58,7 @@ storiesOf('IonButton', module)
           <br><br>
           <ion-button>default</ion-button>
           <ion-button round>round</ion-button>
-          <ion-button fab>fab</ion-button>
+          <ion-button fab fab-right fab-bottom>fab</ion-button>
         </div>
       `
     }

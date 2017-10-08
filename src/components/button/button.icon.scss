@@ -3,23 +3,20 @@
 // Button Icons
 // --------------------------------------------------
 
-
-.button-icon-left .ion-icon {
-  padding-right: .4em;
-
+.button-icon-left .ion-icon,
+.button-icon-right .ion-icon {
   font-size: 1em;
   line-height: 1;
 
   pointer-events: none;
 }
 
+.button-icon-left .ion-icon {
+  padding-right: .4em;
+}
+
 .button-icon-right .ion-icon {
   padding-left: .4em;
-
-  font-size: 1em;
-  line-height: 1;
-
-  pointer-events: none;
 }
 
 .button-icon-only {

@@ -1,16 +1,23 @@
 <template>
   <div class="ion-content">
     <slot></slot>
-    <div v-if="infiniteInitEnabled" class="infinite-scroll-content">
-      <template v-if="!infiniteEnded">
-        <ion-spinner v-if="typeof infiniteSpinner === 'string'" :name="infiniteSpinner"></ion-spinner>
-        <ion-spinner v-if="typeof infiniteSpinner === 'object'" :spinner="infiniteSpinner"></ion-spinner>
-      </template>
-      <span class="infinite-scroll-content-text">{{infiniteEnded ? infiniteEndedText : infiniteText}}</span>
+
+    <div v-if="infiniteState > INFINITE_STATES.INIT" class="infinite-scroll-content">
+      <slot name="infinite">
+        <template v-if="infiniteState !== INFINITE_STATES.ENDED">
+          <ion-spinner v-if="typeof infiniteSpinner === 'string'" :name="infiniteSpinner"></ion-spinner>
+          <ion-spinner v-if="typeof infiniteSpinner === 'object'" :spinner="infiniteSpinner"></ion-spinner>
+        </template>
+        <span class="infinite-scroll-content-text">
+          {{infiniteState === INFINITE_STATES.ENDED ? infiniteEndedText : infiniteText}}
+        </span>
+      </slot>
     </div>
-    <transition v-if="scrollTopEnabled" name="stb">
-      <ion-button v-show="showScrollTopBtn" class="scroll-top-btn" @click="scrollToTop" fab clear icon-only>
-        <ion-icon name="return-top"></ion-icon>
+    <transition v-if="scrollToTopEnabled" name="stt-btn">
+      <ion-button v-show="showScrollToTop" class="stt-btn" @click="doScrollToTop">
+        <slot name="stt-btn">
+          <ion-icon :name="scrollToTopIcon"></ion-icon>
+        </slot>
       </ion-button>
     </transition>
   </div>
@@ -20,9 +27,8 @@
   import throttle from 'lodash.throttle'
   import IonSpinner from '../spinner/spinner.vue'
   import IonButton from '../button/button.vue'
-  import { getWin } from '../../util/util'
 
-  if (process.browser) {
+  if (!process.ssr) {
     window.requestAnimationFrame = (function () {
       return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -31,7 +37,6 @@
           window.setTimeout(callback, 6000 / 60)
         }
     })()
-
     window.cancelAnimFrame = (function () {
       return window.cancelAnimationFrame ||
         window.webkitCancelAnimationFrame ||
@@ -44,6 +49,14 @@
     })()
   }
 
+  // 滚动加载状态
+  const INFINITE_STATES = {
+    INIT: 0, // 初始状态
+    READY: 1, // 准备状态
+    LOADING: 2, // 加载中状态
+    ENDED: 3 // 结束状态
+  }
+
   export default {
     name: 'ion-content',
     props: {
@@ -53,7 +66,7 @@
       },
       infiniteThreshold: {
         type: Number,
-        default: 0.1
+        default: 0.1 // 一个滚动区域大小
       },
       infiniteSpinner: {
         type: [String, Object],
@@ -67,21 +80,30 @@
         type: String,
         default: '没有更多数据了'
       },
-      scrollTopEnabled: {
+      scrollToTopEnabled: {
         type: Boolean,
         default: false
       },
-      scrollTopThreshold: {
+      scrollToTopDuration: {
         type: Number,
-        default: 1 // 一个窗体大小
+        default: 320 // 动画时长320ms
+      },
+      scrollToTopThreshold: {
+        type: Number,
+        default: 1 // 一个滚动区域大小
+      },
+      scrollToTopIcon: {
+        type: String,
+        default: 'arrow-top'
       }
     },
     data () {
       return {
-        infiniteInitEnabled: false,
-        infiniteEnded: false,
+        isAbsoluteLayout: false, // 滚动区域是否是绝对定位
+        INFINITE_STATES,
+        infiniteState: INFINITE_STATES.INIT, // 加载更多状态
         infiniteHandler: null,
-        showScrollTopBtn: false,
+        showScrollToTop: false,
         scrollTopHandler: null
       }
     },
@@ -90,82 +112,147 @@
       IonButton
     },
     mounted () {
+      this.isAbsoluteLayout = this.$parent && this.$parent.absolute
+
       this.$nextTick(() => {
-        this.initInfiniteScroll(this.infiniteEnabled)
-        this.initScrollToTop()
+        // 初始化滚动加载
+        this.infiniteEnabled && this.initInfiniteScroll()
+        // 初始化滚动到顶部
+        this.scrollToTopEnabled && this.initScrollToTop()
       })
     },
     beforeDestroy () {
-      this.disableInfiniteScroll()
-      this.disableScrollToTop()
+      // 解除滚动加载的事件
+      this._disableInfiniteScroll()
+      // 解除滚动到顶部的事件
+      this._disableScrollToTop()
     },
     methods: {
-      initInfiniteScroll (enabled) {
-        if (enabled) {
-          this.infiniteHandler = throttle(() => {
-            const win = getWin()
-            const scrollTop = window.pageYOffset
-            const scrollHeight = win.scrollHeight
-            const winHeight = win.clientHeight
-
-            if (scrollHeight - (scrollTop + winHeight) < this.infiniteThreshold * winHeight) {
-              this.disableInfiniteScroll()
-              this.$emit('infinite', (enabled) => {
-                if (enabled) {
-                  this.enableInfiniteScroll()
-                } else {
-                  this.infiniteEnded = true
-                }
-              })
-            }
-          }, 50)
-          this.enableInfiniteScroll()
-
-          // 首次触发
-          this.infiniteHandler()
-        }
-        this.infiniteInitEnabled = !!enabled
+      /**
+       * 获取当前滚动的目标元素
+       * @returns {Document} 如果ion-page是absolute定位的则返回content，否则泛微document
+       * @private
+       */
+      _getScrollTarget () {
+        return this.isAbsoluteLayout ? this.$el : document
       },
+      /**
+       * 启用滚动加载
+       * @private
+       */
+      _enableInfiniteScroll () {
+        this.infiniteHandler && this._getScrollTarget().addEventListener('scroll', this.infiniteHandler)
+      },
+      /**
+       * 禁用滚动加载
+       * @private
+       */
+      _disableInfiniteScroll () {
+        this.infiniteHandler && this._getScrollTarget().removeEventListener('scroll', this.infiniteHandler)
+      },
+      /**
+       * 初始化滚动加载
+       */
+      initInfiniteScroll () {
+        this.infiniteHandler = throttle(() => {
+          const $content = this.isAbsoluteLayout ? this.$el : (document.documentElement || document.body)
+          const scrollTop = this.isAbsoluteLayout ? $content.scrollTop : window.pageYOffset
+          const scrollHeight = $content.scrollHeight
+          const winHeight = $content.clientHeight
+
+          if (scrollHeight - (scrollTop + winHeight) < this.infiniteThreshold * winHeight) {
+            this.infiniteState = INFINITE_STATES.LOADING
+            this._disableInfiniteScroll()
+
+            this.$emit('infinite', (enabled) => {
+              if (enabled) {
+                this._enableInfiniteScroll()
+              } else {
+                this.infiniteState = INFINITE_STATES.ENDED
+              }
+            })
+          }
+        }, 60)
+        this._enableInfiniteScroll()
+        this.infiniteState = INFINITE_STATES.READY
+
+        // 首次触发
+        this.infiniteHandler()
+      },
+      /**
+       * 重置滚动加载
+       * @param scrollToTop 滚动到顶部的高度
+       */
       resetInfiniteScroll (scrollToTop = 0) {
-        this.disableInfiniteScroll() // 重新刷新无限滚动时停止上一次
-        this.infiniteEnded = false
+        this._disableInfiniteScroll() // 重新刷新无限滚动时停止上一次
+        this.infiniteState = INFINITE_STATES.INIT
         this.infiniteHandler = null
-        window.scrollTo(0, scrollToTop) // 滚动到最顶端
 
-        return this.initInfiniteScroll.bind(this)
+        // 滚动到指定位置
+        if (this.isAbsoluteLayout) {
+          this.$el.scrollTop = scrollToTop
+        } else {
+          window.scrollTo(0, scrollToTop)
+        }
+
+        return (enabled) => enabled && this.initInfiniteScroll()
       },
-      enableInfiniteScroll () {
-        this.infiniteHandler && document.addEventListener('scroll', this.infiniteHandler)
+      /**
+       * 启用滚动到顶部
+       * @private
+       */
+      _enableScrollToTop () {
+        this.scrollTopHandler && this._getScrollTarget().addEventListener('scroll', this.scrollTopHandler)
       },
-      disableInfiniteScroll () {
-        this.infiniteHandler && document.removeEventListener('scroll', this.infiniteHandler)
+      /**
+       * 禁用滚动到顶部
+       * @private
+       */
+      _disableScrollToTop () {
+        this.scrollTopHandler && this._getScrollTarget().removeEventListener('scroll', this.scrollTopHandler)
       },
+      /**
+       * 初始化滚动到顶部事件
+       */
       initScrollToTop () {
         this.scrollTopHandler = throttle(() => {
-          const scrollTop = window.pageYOffset
-          const clientHeight = (document.documentElement || document.body).clientHeight
+          const $content = this.isAbsoluteLayout ? this.$el : (document.documentElement || document.body)
+          const scrollTop = this.isAbsoluteLayout ? $content.scrollTop : window.pageYOffset
+          const clientHeight = $content.clientHeight
 
-          this.showScrollTopBtn = scrollTop >= clientHeight * this.scrollTopThreshold // 滚动超过指定窗体大小的倍数则触发
+          this.showScrollToTop = scrollTop >= clientHeight * this.scrollToTopThreshold // 滚动超过指定窗体大小的倍数则触发
         }, 75)
-        document.addEventListener('scroll', this.scrollTopHandler)
+        this._getScrollTarget().addEventListener('scroll', this.scrollTopHandler)
       },
-      disableScrollToTop () {
-        this.scrollTopHandler && document.removeEventListener('scroll', this.scrollTopHandler)
-      },
-      scrollToTop () {
-        let top = window.pageYOffset
-        const duration = 320
-        const step = top / (duration / (1000 / 60)) >> 0
+      /**
+       * 执行滚动到顶部的动画
+       */
+      doScrollToTop () {
+        const $content = this.isAbsoluteLayout ? this.$el : (document.documentElement || document.body)
+        let top = this.isAbsoluteLayout ? $content.scrollTop : window.pageYOffset
+        const step = top / (this.scrollToTopDuration / (1000 / 60)) >> 0
         const fn = () => {
           if (top >= 0) {
             top -= step
-            window.scrollTo(0, top)
+
+            // 滚动到指定位置
+            if (this.isAbsoluteLayout) {
+              $content.scrollTop = top
+            } else {
+              window.scrollTo(0, top)
+            }
             fn.rafTimer = window.requestAnimationFrame(fn)
           } else {
-            window.scrollTo(0, 0)
+            // 滚动到指定位置
+            if (this.isAbsoluteLayout) {
+              $content.scrollTop = 0
+            } else {
+              window.scrollTo(0, 0)
+            }
             window.cancelAnimationFrame(fn.rafTimer)
           }
         }
+
         fn.rafTimer = window.requestAnimationFrame(fn)
       }
     }
@@ -181,28 +268,26 @@
     justify-content: center;
     padding: 12px 0;
     font-size: 1.4rem;
-    .spinner-ios {
-      width: 20px;
-      height: 20px;
+    .ion-spinner {
       margin-right: 5px;
     }
   }
 
-  .button.scroll-top-btn {
+  .button.stt-btn {
     position: fixed;
     right: $content-margin;
     bottom: $content-margin;
     color: rgba($primary-color, .9);
+    transition: all 200ms cubic-bezier(.645, .045, .355, 1);
+
     .ion-icon {
       padding: 0 8px;
       font-size: 4rem;
       line-height: 40px;
     }
-
-    transition: all 200ms cubic-bezier(.645, .045, .355, 1);
   }
 
-  .stb-enter, .stb-leave-to {
+  .stt-btn-enter, .stt-btn-leave-to {
     opacity: 0;
   }
 </style>

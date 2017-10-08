@@ -1,4 +1,30 @@
-@mixin button-default($color-base, $color-contrast) {
+@mixin button-size($map) {
+  @if map_has_key($map, padding) {
+    padding: 0 map_get($map, padding);
+  }
+  @if map_has_key($map, height) {
+    height: map_get($map, height);
+  }
+  @if map_has_key($map, font-size) {
+    font-size: map_get($map, font-size);
+  }
+  @if map_has_key($map, border-radius) {
+    border-radius: map_get($map, border-radius);
+  }
+  @if map_has_key($map, icon-font-size) {
+    &.button-icon-left .ion-icon,
+    &.button-icon-right .ion-icon {
+      font-size: map_get($map, icon-font-size);
+    }
+  }
+  @if map_has_key($map, icon-only-font-size) {
+    &.button-icon-only .ion-icon {
+      font-size: map_get($map, icon-only-font-size);
+    }
+  }
+}
+
+@mixin button-color($color-base, $color-contrast: color-inverse($color-base)) {
   $background-color: $color-base;
   $background-color-activated: color-shade($background-color);
 
@@ -10,11 +36,7 @@
   }
 }
 
-@mixin button-default-color($color-value) {
-  @include button-default($color-value, color-inverse($color-value));
-}
-
-@mixin button-outline($color-base, $color-contrast) {
+@mixin button-outline($color-base, $color-contrast: color-inverse($color-base)) {
   border-color: $color-base;
   color: $color-base;
   background-color: transparent;
@@ -25,11 +47,7 @@
   }
 }
 
-@mixin button-outline-color($color-value) {
-  @include button-outline($color-value, color-inverse($color-value));
-}
-
-@mixin button-clear($color-base, $color-contrast) {
+@mixin button-clear($color-base, $color-contrast: color-inverse($color-base)) {
   border-color: transparent;
   color: $color-base;
   background-color: transparent;
@@ -38,8 +56,4 @@
     background-color: transparent;
     opacity: .4;
   }
-}
-
-@mixin button-clear-color($color-value) {
-  @include button-clear($color-value, color-inverse($color-value));
 }
