@@ -67,9 +67,8 @@ $tab-button-inactive-color: $toolbar-inactive-color !default;
   }
 }
 
-[tabsLayout=icon-right] .tab-button,
-[tabsLayout=icon-left] .tab-button {
-
+[tabs-layout=icon-right] .tab-button,
+[tabs-layout=icon-left] .tab-button {
   .tab-button-text {
     font-size: 1.4rem;
     line-height: 1.1;
@@ -83,7 +82,7 @@ $tab-button-inactive-color: $toolbar-inactive-color !default;
   }
 }
 
-[tabsLayout=icon-hide] .tab-button,
+[tabs-layout=icon-hide] .tab-button,
 .tab-button.has-title-only {
   min-height: $tabbar-height - 8;
 
@@ -95,13 +94,7 @@ $tab-button-inactive-color: $toolbar-inactive-color !default;
   }
 }
 
-[tabsLayout=title-hide] .tab-button,
+[tabs-layout=title-hide] .tab-button,
 .tab-button.icon-only {
   min-height: $tabbar-height - 8;
-}
-
-@each $color-name, $color-base, $color-contrast in get-colors($colors) {
-  .ion-tabbar[#{$color-name}] {
-    @include tabbar($color-base, $color-contrast);
-  }
 }

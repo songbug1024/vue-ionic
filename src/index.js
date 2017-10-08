@@ -5,7 +5,6 @@ import IonPage from './components/page/page.vue'
 import IonHeader from './components/page/header.vue'
 import IonContent from './components/page/content.vue'
 import IonFooter from './components/page/footer.vue'
-import IonTabbar from './components/tabbar/tabbar.vue'
 import IonToolbar from './components/toolbar/toolbar.vue'
 import IonNavbar from './components/toolbar/navbar.vue'
 
@@ -23,7 +22,6 @@ export default function install (Vue, options) {
   Vue.component(IonHeader.name, IonHeader)
   Vue.component(IonContent.name, IonContent)
   Vue.component(IonFooter.name, IonFooter)
-  Vue.component(IonTabbar.name, IonTabbar)
   Vue.component(IonToolbar.name, IonToolbar)
   Vue.component(IonNavbar.name, IonNavbar)
 

@@ -4,10 +4,17 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: $z-index-toolbar;
-  display: flex;
   width: 100%;
+  z-index: $z-index-toolbar;
+
+  display: flex;
 }
+
+[tabs-placement=top] .ion-tabbar {
+  bottom: inherit;
+  top: 0;
+}
+
 
 .tab-button {
   user-select: none;

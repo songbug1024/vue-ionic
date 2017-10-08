@@ -1,4 +1,4 @@
-@mixin tabbar($color-base, $color-contrast) {
+@mixin tabbar-color($color-base, $color-contrast: color-inverse($color-base)) {
   border-color: darken($color-base, 10%);
   background-color: $color-base;
 
