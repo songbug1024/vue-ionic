@@ -1,3 +1,5 @@
+@import "../../globals";
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -22,4 +24,47 @@ body {
   touch-action: manipulation;
   word-wrap: break-word;
   text-size-adjust: none;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+
+  color: $text-color;
+  background-color: $background-color;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+.hide,
+[hidden],
+template {
+  display: none !important;
+}
+
+@each $color-name, $color-base, $color-contrast in get-colors($colors) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a:not([button]),
+  small,
+  b,
+  i,
+  strong,
+  em,
+  sub,
+  sup,
+  .ion-icon {
+    &[#{$color-name}] {
+      color: $color-base;
+    }
+  }
 }

@@ -8,6 +8,7 @@ function loadStories () {
   require('../src/stories/app')
   require('../src/stories/button')
   require('../src/stories/page')
+  require('../src/stories/tabbar')
 }
 
 configure(loadStories, module)

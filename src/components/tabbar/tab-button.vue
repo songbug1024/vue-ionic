@@ -7,7 +7,10 @@
     props: {
       index: Number,
       // div/a/router-link...
-      tag: String,
+      tag: {
+        type: String,
+        default: 'div'
+      },
       tagProps: Object,
       title: String,
       icon: String,
@@ -25,7 +28,7 @@
     },
     render (h) {
       let icon = this.icon
-      const {index, tag = 'div', tagProps, selectedIcon, title, badge, badgeColor, badgeStyle} = this
+      const {index, tag, tagProps, selectedIcon, title, badge, badgeColor, badgeStyle} = this
 
       const selected = index === this.$parent.selectedIndex
       if (selected && selectedIcon) icon = selectedIcon

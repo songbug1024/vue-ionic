@@ -10,6 +10,11 @@
   display: flex;
 }
 
+[tabs-placement=bottom] .ion-tabbar {
+  top: inherit;
+  bottom: 0;
+}
+
 [tabs-placement=top] .ion-tabbar {
   bottom: inherit;
   top: 0;

@@ -29,7 +29,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  @import "assets/fonts/iconfont.css";
-</style>

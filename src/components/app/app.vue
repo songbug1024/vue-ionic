@@ -1,7 +1,7 @@
 <template>
-    <div class="ion-app">
-        <slot></slot>
-    </div>
+  <div class="ion-app">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -11,8 +11,8 @@
 </script>
 
 <style lang="scss">
-    @import "./normalize";
-    @import "./app";
-    @import "./structure";
-    @import "./typography";
+  @import "./normalize";
+  @import "./structure";
+  @import "./typography";
+  @import "../../fonts/iconfont.css";
 </style>
