@@ -1,12 +1,15 @@
 import IonApp from './components/app/app.vue'
 import IonButton from './components/button/button.vue'
 import IonIcon from './components/icon/icon.vue'
+
 import IonPage from './components/page/page.vue'
 import IonHeader from './components/page/header.vue'
 import IonContent from './components/page/content.vue'
 import IonFooter from './components/page/footer.vue'
+
 import IonToolbar from './components/toolbar/toolbar.vue'
-import IonNavbar from './components/toolbar/navbar.vue'
+import IonTitle from './components/toolbar/title.vue'
+import IonButtons from './components/toolbar/buttons.vue'
 
 import { showActionSheet } from './components/action-sheet/action-sheet'
 import { showAlert, showConfirm, showPrompt } from './components/alert/alert'
@@ -23,7 +26,8 @@ export default function install (Vue, options) {
   Vue.component(IonContent.name, IonContent)
   Vue.component(IonFooter.name, IonFooter)
   Vue.component(IonToolbar.name, IonToolbar)
-  Vue.component(IonNavbar.name, IonNavbar)
+  Vue.component(IonTitle.name, IonTitle)
+  Vue.component(IonButtons.name, IonButtons)
 
   Vue.prototype.$showActionSheet = showActionSheet
 

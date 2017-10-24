@@ -10,10 +10,15 @@
   }
 
   const resolveVNodeBarButtonRole = function (vnode) {
-    if (!vnode.data || typeof vnode.data.staticClass === 'undefined') throw new Error('Not resolveVNodeData before set role')
+    if (!vnode.data || typeof vnode.data.staticClass === 'undefined') {
+      resolveVNodeData(vnode)
+    }
 
-    if (vnode.data.staticClass.indexOf('ion-buttons') >= 0) {
-      // 包含 ion-buttons
+    if (isVNodeComponentTags(vnode, 'ion-buttons')) {
+      // 包含ion-buttons组件
+      vnode.componentOptions.children.forEach((item) => resolveBarButtonRole(item))
+    } else if (vnode.data.staticClass.indexOf('ion-buttons') >= 0) {
+      // 包含div.ion-buttons
       vnode.children.forEach((item) => resolveBarButtonRole(item))
     } else {
       resolveBarButtonRole(vnode)

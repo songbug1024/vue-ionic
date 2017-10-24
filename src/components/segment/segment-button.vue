@@ -3,10 +3,8 @@
     name: 'ion-segment-button',
     props: {
       value: String,
-      tag: {
-        type: String,
-        default: 'div' // div(默认)、a(RouterLink)
-      },
+      // div/router-link...
+      tag: String,
       tagProps: Object
     },
     computed: {
@@ -16,14 +14,13 @@
     },
     methods: {
       onClick (e) {
-        this.$emit('ion-select', this.value)
+        this.$emit('select', this.value)
         this.$parent && this.$parent.$emit('input', this.value)
       }
     },
     render (h) {
-      let tag = this.tag
-      let tagProps = this.tagProps
-      if (tag === 'a') tag = 'router-link'
+      const tag = this.tag || 'div'
+      const tagProps = this.tagProps
 
       return h(tag, {
         'class': ['segment-button', {'segment-activated': this.activated}],
